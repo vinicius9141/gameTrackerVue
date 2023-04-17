@@ -1,0 +1,39 @@
+@import './styles/variables.css';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background: var(--gradient);
+}
+
+html{
+  font-size: 10px;
+}
+.flex {
+  display: flex;
+}
+.align-center{
+  align-items: center;
+}
+.justify-center{
+  justify-content:center ;
+}
+
+.wrap{
+  flex-wrap: wrap;
+}
+
+.gap{
+  gap: 2rem;
+}
+
+.container{
+  margin: 0 auto;
+  max-width: 118rem;;
+}
