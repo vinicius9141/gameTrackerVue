@@ -6,15 +6,14 @@
     <div class="navigation-area ">
       <p class="offer">Ofertas</p>
       <div class="buttons-area">
-        <input class="shadow" type="text" placeholder="Procurar">
-
+        <input class="shadow" type="text" placeholder="Procurar" v-model="search" @keydown="$event=>filtered($event)">
         <div>
           <span class="order-by shadow">Ordenar por:</span>
-          <select class="select shadow" name="select">
-            <option value="valor1" selected>% de Desconto</option>
-            <option value="valor2">Maior Preço</option>
-            <option value="valor3">Menor Preço</option>
-            <option value="valor4">Titulo</option>
+          <select class="select shadow" name="select" @change="$event=>selecao($event)">
+            <option value="discount" selected>% de Desconto</option>
+            <option value="normalPrice">Maior Preço</option>
+            <option value="salePrice">Menor Preço</option>
+            <option value="title">Titulo</option>
           </select>
         </div>
         
@@ -28,6 +27,47 @@
 
   <Footer />
 </template>
+
+
+<script setup>
+import Header from './components/Header.vue';
+import Button from './components/Button.vue';
+import Footer from './components/Footer.vue';
+import { ref, onMounted, defineAsyncComponent } from 'vue';
+
+const data = ref([{ name: '' }])
+const dataServe = ref([{ name: '' }])
+const Card = defineAsyncComponent(() => import('./components/Card.vue'))
+
+onMounted(async () => {
+  const response = await fetch('https://www.cheapshark.com/api/1.0/deals?pageNumber=0&pageSize=33&storeID=1&onSale=1&AAA=1')
+  const res = await response.json()
+  const resMap = res.map(game => {
+      const subPrice = game.normalPrice - game.salePrice
+      const discount = ((subPrice * 100) / game.normalPrice).toFixed(0).replace(".", ",")
+      return {...game , discount}
+  })
+
+  dataServe.value = resMap
+  data.value = resMap
+
+})
+
+let timeout
+function filtered(e){
+  clearTimeout(timeout)
+  timeout = setTimeout(()=>{
+
+    
+    console.log(e.target.value)
+   data.value = dataServe.value.filter(game => game?.title.toLowerCase().includes(e.target.value.toLowerCase()))
+  }, 1000)
+}
+
+function selecao(e){
+  data.value = dataServe.value.sort((a , b)=> a[e.target.value].localeCompare(b[e.target.value]) )
+}
+</script>
 
 <style scoped>
   .navigation-area{
@@ -114,19 +154,3 @@
 
 </style>
 
-<script setup>
-import Header from './components/Header.vue';
-import Button from './components/Button.vue';
-import Footer from './components/Footer.vue';
-import { ref, onMounted, defineAsyncComponent } from 'vue';
-
-const data = ref([{name: ''}])
-const Card = defineAsyncComponent(()=>import ('./components/Card.vue'))
-
-  onMounted(async ()=>{
-    const response = await fetch('https://www.cheapshark.com/api/1.0/deals?pageNumber=0&pageSize=12&storeID=1&onSale=1&AAA=1')
-    const res = await response.json()
-    data.value = res
-  
-  })
-</script>

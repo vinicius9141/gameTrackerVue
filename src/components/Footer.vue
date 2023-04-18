@@ -10,7 +10,7 @@
     <div class="container flex align-center justify-center flex-coll">
       <img class="img-footer" :src="logo">
 
-      <p>{{ textFooter }}</p>
+      <p class="text-footer">{{ textFooter }}</p>
 
       <div class="links-footer">
         <ul class="flex">
@@ -29,10 +29,23 @@
 
 .footer{
   width: 100%;
-  height: 31.1rem;
+  min-height: 31.1rem;
   background: var(--blue);
   color: #ffffff57;
   font-size: 1.4rem;
+}
+@media (max-width: 768px){
+  .footer{
+    padding: 1rem;
+   
+  }
+}
+
+@media (max-width: 768px){
+  .text-footer{
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .img-footer{
@@ -47,7 +60,21 @@
   margin-top: 2rem;
   color: #fff;
 }
+
+@media (max-width: 768px){
+  .links-footer > ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .links-footer > ul > li {
  margin-right: 4.6rem;
+}
+
+@media (max-width: 768px){
+  .links-footer > ul > li {
+    margin-bottom: 2rem;
+  }
 }
 </style>
