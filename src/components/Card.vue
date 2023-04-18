@@ -1,35 +1,7 @@
 <script setup>
 
-//   const item = {
-//     "internalName": "SHADOWTACTICSBLADESOFTHESHOGUN",
-//     "title": "Shadow Tactics: Blades of the Shogun",
-//     "metacriticLink": "\/game\/pc\/shadow-tactics-blades-of-the-shogun",
-//     "dealID": "j2lexFQ%2Fx%2FOeqECYZgxWgBxj7YX3hcQs0N3Y8mn8kHk%3D",
-//     "storeID": "1",
-//     "gameID": "158443",
-//     "salePrice": "3.99",
-//     "normalPrice": "39.99",
-//     "isOnSale": "1",
-//     "savings": "90.022506",
-//     "metacriticScore": "85",
-//     "steamRatingText": "Overwhelmingly Positive",
-//     "steamRatingPercent": "96",
-//     "steamRatingCount": "26908",
-//     "steamAppID": "418240",
-//     "releaseDate": 1480982400,
-//     "lastChange": 1681594022,
-//     "dealRating": "9.5",
-//     "thumb": "https:\/\/cdn.cloudflare.steamstatic.com\/steam\/apps\/418240\/capsule_sm_120.jpg?t=1674570965"
-// }
-
-
   const props  = defineProps({item:null})
- 
-
-  const { thumb, title, normalPrice, salePrice, discount } = props.item
-
-  
-
+   const { thumb, title, normalPrice, salePrice, discount } = props.item
 
   if(discount <= 0){
     discount = 'Gratis'
@@ -68,7 +40,6 @@
 @import '../styles/variables.css';
  
 .card{
-    /* background:coral; */
     width: 38rem;
     height: 25.1rem;
     border-radius: var(--radius);
@@ -77,16 +48,16 @@
 
   }
 
-   .card-image, img{
+  .card-image, img{
     width: 100%;
   }
   .card-details{
     height: 10.4rem;
   }
 
-.card-footer{
-  padding: .7rem 1.6rem 0;
-}
+  .card-footer{
+    padding: .7rem 1.6rem 0;
+  }
   .card-footer h1{
     color: #fff;
     font-size: 2.4rem;
@@ -130,7 +101,7 @@
   .new-price{
     font-size: 1.8rem;
   }
-
+  
   .discount{
     display: flex;
     align-items: center;
