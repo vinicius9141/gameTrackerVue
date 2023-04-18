@@ -24,7 +24,6 @@
   <div class="flex align-center justify-center">
     <Button />
   </div>
-
   <Footer />
 </template>
 
@@ -47,7 +46,6 @@ onMounted(async () => {
       const discount = ((subPrice * 100) / game.normalPrice).toFixed(0).replace(".", ",")
       return {...game , discount}
   })
-
   dataServe.value = resMap
   data.value = resMap
 
@@ -57,9 +55,6 @@ let timeout
 function filtered(e){
   clearTimeout(timeout)
   timeout = setTimeout(()=>{
-
-    
-    console.log(e.target.value)
    data.value = dataServe.value.filter(game => game?.title.toLowerCase().includes(e.target.value.toLowerCase()))
   }, 1000)
 }

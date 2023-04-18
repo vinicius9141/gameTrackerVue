@@ -9,8 +9,6 @@
 
 <style scoped>
 @import '../styles/variables.css';
-
-
   .button{
     width: 38rem;
     height: 5rem;
