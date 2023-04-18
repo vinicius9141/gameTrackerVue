@@ -26,11 +26,9 @@
   const props  = defineProps({item:null})
  
 
-  const { thumb, title, normalPrice, salePrice } = props.item
+  const { thumb, title, normalPrice, salePrice, discount } = props.item
 
   
-  const subPrice = props.item?.normalPrice - props.item?.salePrice
-  const discount = ((subPrice * 100) / props.item?.normalPrice).toFixed(0).replace(".",",")
 
 
   if(discount <= 0){
