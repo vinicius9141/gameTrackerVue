@@ -29,6 +29,12 @@ section {
   font-size: 2.4rem;
   color: #fff;
 }
+
+@media (max-width: 768px){
+  .nav-bar{
+    justify-content: center;
+  }
+}
 .nav-bar img{
   margin-right: 1.134rem;
 }

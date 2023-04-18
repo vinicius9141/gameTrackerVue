@@ -24,11 +24,18 @@
 
 
   const props  = defineProps({item:null})
-  console.log('props',props.item)
+ 
 
   const { thumb, title, normalPrice, salePrice } = props.item
 
   
+  const subPrice = props.item?.normalPrice - props.item?.salePrice
+  const discount = ((subPrice * 100) / props.item?.normalPrice).toFixed(0).replace(".",",")
+
+
+  if(discount <= 0){
+    discount = 'Gratis'
+  }
   
 </script>
 
@@ -46,11 +53,11 @@
           <button>Detalhes</button>
           <div class="flex">
            <div class="card-price">
-             <span class="old-price">${{ normalPrice }}</span>
-              <span class="new-price">${{ salePrice }}</span>
+             <span class="old-price">$ {{ normalPrice?.replace('.' , ',') }}</span>
+              <span class="new-price">$ {{ salePrice?.replace('.' , ',') }}</span>
            </div>
             <div class="discount">
-              Gratis
+              -{{ discount }}%
             </div>
           </div>
         </div>
